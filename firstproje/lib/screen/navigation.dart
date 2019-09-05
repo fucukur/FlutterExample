@@ -1,4 +1,9 @@
+import 'package:firstproje/screen/input_form.dart';
 import 'package:flutter/material.dart';
+
+import 'ApiCall.dart';
+import 'FormIslemleri.dart';
+import 'form_elemanlari.dart';
 
 class Navigation extends StatelessWidget {
   String title = "Parametre";
@@ -13,83 +18,133 @@ class Navigation extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: Text("2 ye git Sayfaya Git"),
-              color: Colors.blueGrey,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Sayfa2(title),
-                  ),
-                );
-              },
-            ),
-            RaisedButton(
-              child: Text("3 e git "),
-              color: Colors.blueGrey,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Sayfa3(),
-                  ),
-                );
-              },
-            ),
-            RaisedButton(
-              child: Text("4 e git "),
-              color: Colors.amberAccent,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Sayfa4(),
-                  ),
-                );
-              },
-            ),
-            RaisedButton(
-              child: Text("5 e git geri gelme"),
-              color: Colors.amberAccent,
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => Sayfa5()));
-              },
-            ),
-            RaisedButton(
-              child: Text("İsimlendirme ile rota"),
-              color: Colors.amberAccent,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/Sayfa3");
-              },
-            ),
-            RaisedButton(
-              child: Text("bozuk rota"),
-              color: Colors.redAccent,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/Sadsyfa3");
-              },
-            ),
-            RaisedButton(
-              child: Text("Parametre ile rota"),
-              color: Colors.amberAccent,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/Sayfa2");
-              },
-            ),
-            RaisedButton(
-              child: Text("Liste Sayfasına Git"),
-              color: Colors.amberAccent,
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, "/ListPage");
-              },
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                child: Text("2 ye git Sayfaya Git"),
+                color: Colors.blueGrey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Sayfa2(title),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("3 e git "),
+                color: Colors.blueGrey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Sayfa3(),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("Api"),
+                color: Colors.blueGrey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ApiCall(),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("InputForm a git"),
+                color: Colors.blueGrey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => InputForm(),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("Form Elemanlarına git"),
+                color: Colors.blueGrey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FormElemanlari(),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("Form İşlemlerine Git "),
+                color: Colors.blueGrey,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FormIslemleri(),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("4 e git "),
+                color: Colors.amberAccent,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Sayfa4(),
+                    ),
+                  );
+                },
+              ),
+              RaisedButton(
+                child: Text("5 e git geri gelme"),
+                color: Colors.amberAccent,
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Sayfa5()));
+                },
+              ),
+              RaisedButton(
+                child: Text("İsimlendirme ile rota"),
+                color: Colors.amberAccent,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/Sayfa3");
+                },
+              ),
+              RaisedButton(
+                child: Text("bozuk rota"),
+                color: Colors.redAccent,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/Sadsyfa3");
+                },
+              ),
+              RaisedButton(
+                child: Text("Parametre ile rota"),
+                color: Colors.amberAccent,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/Sayfa2");
+                },
+              ),
+              RaisedButton(
+                child: Text("Liste Sayfasına Git"),
+                color: Colors.amberAccent,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/ListPage");
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -126,7 +181,6 @@ class ListPage extends StatelessWidget {
 }
 
 class ListDetail extends StatelessWidget {
-
   int clickedIndex = 1;
 
   ListDetail(this.clickedIndex);
@@ -137,7 +191,7 @@ class ListDetail extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Liste Detay Sayfası  $clickedIndex"
-              "",
+          "",
           style: TextStyle(color: Colors.white),
         ),
       ),
