@@ -1,8 +1,6 @@
 import 'package:firstproje/models/araba.dart';
+import 'package:firstproje/services/services.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class ApiCall extends StatefulWidget {
   @override
@@ -11,29 +9,7 @@ class ApiCall extends StatefulWidget {
 
 class _ApiCallState extends State<ApiCall> {
   Post post;
-
-  Future<Post> _dataCall() async {
-    var response = await http.get("https://jsonplaceholder.typicode.com/posts/1");
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      return Post.fromJsonMap(json.decode(response.body));
-    } else {
-      throw Exception("Bağanltı yok ${response.statusCode})");
-    }
-  }
-
-  @override
-  void initState() {
-    // TODO:api
-    super.initState();
-    _dataCall().then((okunanGonderi) {
-      post = okunanGonderi;
-      debugPrint("Apiden gelen başlık: " + okunanGonderi.title);
-      debugPrint("Apiden gelen body: " + okunanGonderi.body);
-      debugPrint("Apiden gelen id: " + okunanGonderi.id.toString());
-      debugPrint("Apiden gelen user id : " + okunanGonderi.userId.toString());
-    });
-  }
-
+  //ListTile dataList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,19 +17,28 @@ class _ApiCallState extends State<ApiCall> {
         title: Text("APi"),
       ),
       body: FutureBuilder(
-        future: _dataCall(),
+        future: dataCall(),
         builder: (BuildContext context, AsyncSnapshot<Post> snapshot) {
           if (snapshot.hasData) {
-            return ListTile(
-              title: Text(snapshot.data.title),
-              subtitle: Text(snapshot.data.body),
-              leading: CircleAvatar(
-                child: Text(snapshot.data.id.toString()),
+            return GestureDetector(
+              onTap: _clicklist(),
+              onDoubleTap: _oncelik(),
+              child: Container(
+                child: ListTile(
+                  key: Key("dataList"),
+                  title: Text(snapshot.data.title),
+                  subtitle: Text(snapshot.data.body),
+                  leading: CircleAvatar(
+                    child: Text(snapshot.data.id.toString()),
+                  ),
+                ),
               ),
             );
           } else {
             Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.grey,
+              ),
             );
           }
           return Container();
@@ -61,6 +46,15 @@ class _ApiCallState extends State<ApiCall> {
 
       ),
     );
+
+  }
+  _clicklist() {
+    _oncelik();
+    debugPrint("data list tıklandı");
+    debugPrint("");
+  }
+  _oncelik() {
+    debugPrint("oncelik methoddan tetiklendi");
   }
 }
 
